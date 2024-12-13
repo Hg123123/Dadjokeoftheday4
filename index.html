@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dave's Dad Joke of the Day</title>
+    <style>
+        /* General body styles */
+        body {
+            font-family: 'Comic Sans MS', Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 3s ease-in-out infinite alternate;
+        }
+
+        /* Joke text styling */
+        #jokeText, #punchlineText {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Button styles */
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0.5;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes backgroundShift {
+            0% {
+                background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            }
+            50% {
+                background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+            }
+            100% {
+                background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            }
+        }
+
+        body {
+            animation: backgroundShift 10s infinite;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dave's Dad Joke of the Day</h1>
+    <form id="jokeForm">
+        <input type="text" id="joke" placeholder="Enter your dad joke (e.g., Why did the chicken?)" required><br>
+        <button type="submit">Punch it Chewy</button>
+    </form>
+
+    <h2 id="jokeText"></h2>
+    <h3 id="punchlineText"></h3>
+
+    <script>
+        const form = document.getElementById('jokeForm');
+        const jokeText = document.getElementById('jokeText');
+        const punchlineText = document.getElementById('punchlineText');
+
+        const colors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A6', '#A633FF'];
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get the user's joke
+            const joke = document.getElementById('joke').value;
+
+            // Display the joke and fixed punchline
+            jokeText.textContent = joke;
+            punchlineText.textContent = "The Aristocrats!";
+
+            // Randomly change the text color
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            jokeText.style.color = randomColor;
+            punchlineText.style.color = randomColor;
+
+            // Add animation for the punchline text
+            punchlineText.style.transition = "transform 0.3s ease-in-out";
+            punchlineText.style.transform = "scale(1.2)";
+            setTimeout(() => {
+                punchlineText.style.transform = "scale(1)";
+            }, 300);
+        });
+    </script>
+</body>
+</html>
